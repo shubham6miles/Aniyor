@@ -25,12 +25,10 @@ import { WhatCanYouSellTabs } from "@/components/what-can-you-sell-tabs"
 export default function HomePage() {
   const [currentPage, setCurrentPage] = useState("home")
   const [isSignInOpen, setIsSignInOpen] = useState(false)
-  const [isRegisterOpen, setIsRegisterOpen] = useState(false)
 
   const handleNavigate = (page: string) => {
     setCurrentPage(page)
     setIsSignInOpen(false)
-    setIsRegisterOpen(false)
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
@@ -89,7 +87,13 @@ export default function HomePage() {
   }
 
   if (currentPage === "register") {
-    return <SellerRegistration onNavigate={handleNavigate} />
+    return (
+      <SellerRegistration
+        isOpen={true}
+        onClose={() => setCurrentPage("home")}
+        onNavigate={handleNavigate}
+      />
+    );
   }
 
   // Default home page
@@ -102,7 +106,7 @@ export default function HomePage() {
           <div className="flex items-center justify-between h-16">
             {/* Logo - Using just the monogram */}
             <div className="flex items-center space-x-2">
-              <Image src="/aniyor-logo-dark.png" alt="Aniyor Logo" width={40} height={40} className="w-10 h-10" />
+              <Image src="https://cdn.shopify.com/s/files/1/0638/5650/9063/files/Aniyor_Monogram_black.png?v=1737799528?" alt="Aniyor Logo" width={40} height={40} className="w-10 h-10" />
               <span className="text-xl font-semibold text-gray-900">Aniyor</span>
             </div>
 
@@ -141,7 +145,7 @@ export default function HomePage() {
                 Sign In
               </Button>
               <Button
-                onClick={() => setIsRegisterOpen(true)}
+                onClick={() => handleNavigate("register")}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6"
               >
                 Start Selling
@@ -317,7 +321,7 @@ export default function HomePage() {
             </div>
             <div className="relative">
               <Image
-                src="/placeholder.svg?height=400&width=500"
+                src="https://www.aniyor.net/cdn/shop/files/First-GST-return.jpg?v=1745471583& height=400&width=500"
                 alt="GSTIN registration and compliance illustration"
                 width={500}
                 height={400}
@@ -394,23 +398,7 @@ export default function HomePage() {
       <Footer onNavigate={handleNavigate} />
 
       {/* Sign In Modal */}
-      <SignInModal
-        isOpen={isSignInOpen}
-        onClose={() => setIsSignInOpen(false)}
-        onNavigate={(page) => {
-          if (page === "register") {
-            setIsSignInOpen(false)
-            setIsRegisterOpen(true)
-          } else {
-            handleNavigate(page)
-          }
-        }}
-      />
-      <SellerRegistration
-        isOpen={isRegisterOpen}
-        onClose={() => setIsRegisterOpen(false)}
-        onNavigate={handleNavigate}
-      />
+      <SignInModal isOpen={isSignInOpen} onClose={() => setIsSignInOpen(false)} onNavigate={handleNavigate} />
     </div>
   )
 }
