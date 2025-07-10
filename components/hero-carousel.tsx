@@ -13,7 +13,8 @@ const slides = [
     description: "Reach millions of spiritual seekers and devotees looking for authentic products and services.",
     cta: "List your Products / Services Today!",
     background: "bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800",
-    image: "/placeholder.svg?height=500&width=600",
+    image:
+      "https://www.aniyor.net/cdn/shop/files/Corporate_Devotte_594c269d-ed47-44b9-8c9f-4c6a6dc76b93.png?v=1743756487&width=3024",
     imageAlt: "Spiritual community connecting worldwide",
   },
   {
@@ -23,7 +24,8 @@ const slides = [
     description: "Connect with like-minded professionals and expand your reach in the spiritual community.",
     cta: "Get Listed",
     background: "bg-gradient-to-br from-emerald-600 via-teal-700 to-cyan-800",
-    image: "/placeholder.svg?height=500&width=600",
+    image:
+      "https://www.aniyor.net/cdn/shop/files/Experty_10a2b0c5-e3af-4378-bce5-3eba5e2c5acd.png?v=1743756325&width=3024",
     imageAlt: "Professional networking and expertise sharing",
   },
   {
@@ -34,7 +36,8 @@ const slides = [
       "Transform your passion into profit with our comprehensive selling platform designed for spiritual entrepreneurs.",
     cta: "Register Now",
     background: "bg-gradient-to-br from-orange-600 via-red-600 to-pink-700",
-    image: "/placeholder.svg?height=500&width=600",
+    image:
+      "https://www.aniyor.net/cdn/shop/files/Hare_Krishna_LoveFest_004_tnu5ch_3baa1fb5-c656-43b8-afe5-4f594ef686e3.webp?v=1743759244&width=3024",
     imageAlt: "Unlock business potential on Aniyor",
   },
   {
@@ -44,7 +47,8 @@ const slides = [
     description: "Use your talents to serve others and build a thriving spiritual business that makes a difference.",
     cta: "Join Aniyor!",
     background: "bg-gradient-to-br from-violet-600 via-purple-700 to-indigo-800",
-    image: "/placeholder.svg?height=500&width=600",
+    image:
+      "https://www.aniyor.net/cdn/shop/files/Vijaya-Murti-1.jpg?v=1743741281&width=3024w=600&h=500&q=80",
     imageAlt: "Share skills and serve the spiritual community",
   },
 ]
@@ -158,13 +162,14 @@ export function HeroCarousel({ onNavigate = () => {} }: HeroCarouselProps) {
 
                 {/* Right Image */}
                 <div className="relative transform transition-all duration-1000 delay-500 ease-out">
-                  <div className="relative z-10">
+                  <div className="relative h-[500px] w-full max-w-lg mx-auto overflow-hidden rounded-lg shadow-2xl backdrop-blur-sm bg-white/10 border border-white/20">
                     <Image
                       src={slide.image || "/placeholder.svg"}
                       alt={slide.imageAlt}
-                      width={600}
-                      height={500}
-                      className="w-full h-auto rounded-lg shadow-2xl backdrop-blur-sm bg-white/10 border border-white/20"
+                      fill
+                      className="object-cover w-full h-full"
+                      sizes="(max-width: 768px) 100vw, 600px"
+                      priority={index === 0}
                     />
                   </div>
                   {/* Decorative Elements */}
